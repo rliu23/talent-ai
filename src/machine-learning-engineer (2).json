@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "generated_at": "2025-08-10T05:36:49.918Z",
+    "source": "AI/ML Job JSON Generator",
+    "version": 1
+  },
+  "role": {
+    "title": "Machine Learning Engineer",
+    "employment_type": "full-time",
+    "seniority": "mid",
+    "years_experience": 3,
+    "remote_policy": "hybrid"
+  },
+  "summary": "Machine Learning Engineer focused on Generative AI, LLMs. You will build, evaluate, and deploy scalable AI/ML systems, partnering cross-functionally to deliver measurable impact.",
+  "requirements": {
+    "core_skills": [
+      "Python",
+      "PyTorch"
+    ],
+    "nice_to_have": [],
+    "tools": [
+      "Hugging Face"
+    ],
+    "domains": [
+      "Generative AI",
+      "LLMs"
+    ]
+  },
+  "responsibilities": [],
+  "ats": {
+    "keywords": [
+      "Python",
+      "PyTorch",
+      "Hugging Face",
+      "Generative AI",
+      "LLMs"
+    ],
+    "title_normalized": "Machine Learning Engineer (mid, 3+ yrs)",
+    "location_policy": "hybrid"
+  }
+}
