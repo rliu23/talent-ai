@@ -338,22 +338,18 @@ const Index = () => {
                 </div>
               </div>
               <div className="mt-8 flex items-center justify-between">
-                <p className="text-sm text-muted-foreground">We generate clean, ATS-friendly JSON with keywords for AI/ML roles.</p>
-                <Button variant="hero" size="lg" onClick={onGenerate}>Download JSON</Button>
-              </div>
-              <div className="mt-8 flex items-center justify-between">
-                <p className="text-sm text-muted-foreground">
-                  We generate clean, ATS-friendly JSON with keywords for AI/ML roles.
-                </p>
-                <div className="flex gap-2">
-                  <Button variant="hero" size="lg" onClick={onGenerate}>
-                    Download JSON
-                  </Button>
-                  <Button variant="outline" size="lg" onClick={onMatch}>
-                    Match Candidates
-                  </Button>
-                </div>
-              </div>
+  <p className="text-sm text-muted-foreground">
+    We generate clean, ATS-friendly JSON with keywords for AI/ML roles.
+  </p>
+  <div className="flex gap-2">
+    <Button variant="hero" size="lg" onClick={onGenerate}>
+      Download JSON
+    </Button>
+    <Button variant="outline" size="lg" onClick={onMatch}>
+      Match Candidates
+    </Button>
+  </div>
+</div>
 
             </CardContent>
           </Card>
