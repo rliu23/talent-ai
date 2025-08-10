@@ -18,7 +18,7 @@ pc = Pinecone(api_key=PINECONE_API_KEY)
 index = pc.Index(INDEX_NAME)
 
 app = Flask(__name__)
-CORS(app) 
+CORS(app, resources={r"/match": {"origins": "http://localhost:8080"}}, supports_credentials=True)
 
 def embed_text(text):
     response = client.embeddings.create(
