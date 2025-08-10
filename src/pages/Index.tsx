@@ -78,6 +78,8 @@ const Index = () => {
   }, [jobTitle, location, domains]);
 
 
+  const [matches, setMatches] = useState([]);
+
   const onMatch = async () => {
     const now = new Date().toISOString();
     const respList = responsibilities
@@ -88,11 +90,7 @@ const Index = () => {
     const keywords = Array.from(new Set([...skills, ...tools, ...domains]));
 
     const jsonData = {
-      meta: {
-        generated_at: now,
-        source: "AI/ML Job JSON Generator",
-        version: 1,
-      },
+      meta: { generated_at: now, source: "AI/ML Job JSON Generator", version: 1 },
       role: {
         title: jobTitle,
         location: location || undefined,
@@ -102,12 +100,7 @@ const Index = () => {
         remote_policy: remotePolicy,
       },
       summary: computedSummary,
-      requirements: {
-        core_skills: skills,
-        nice_to_have: niceToHave,
-        tools,
-        domains,
-      },
+      requirements: { core_skills: skills, nice_to_have: niceToHave, tools, domains },
       responsibilities: respList,
       ats: {
         keywords,
@@ -118,21 +111,17 @@ const Index = () => {
 
     try {
       const res = await fetch("http://localhost:5000/match", {
-        // mode: 'no-cors',
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          job_description: JSON.stringify(jsonData), // Send as string for embedding
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ job_description: JSON.stringify(jsonData) }),
       });
+
       console.log("Sending match request with data:", jsonData);
-      if (!res.ok) {
-        throw new Error("Failed to fetch match results");
-      }
+      if (!res.ok) throw new Error("Failed to fetch match results");
+
       const data = await res.json();
       console.log("Match results:", data);
+      setMatches(data.matches || []);
 
       toast({
         title: "Matching candidates found",
@@ -147,6 +136,7 @@ const Index = () => {
       });
     }
   };
+
 
   const onGenerate = () => {
     const now = new Date().toISOString();
@@ -338,18 +328,18 @@ const Index = () => {
                 </div>
               </div>
               <div className="mt-8 flex items-center justify-between">
-  <p className="text-sm text-muted-foreground">
-    We generate clean, ATS-friendly JSON with keywords for AI/ML roles.
-  </p>
-  <div className="flex gap-2">
-    <Button variant="hero" size="lg" onClick={onGenerate}>
-      Download JSON
-    </Button>
-    <Button variant="outline" size="lg" onClick={onMatch}>
-      Match Candidates
-    </Button>
-  </div>
-</div>
+              <p className="text-sm text-muted-foreground">
+                We generate clean, ATS-friendly JSON with keywords for AI/ML roles.
+              </p>
+              <div className="flex gap-2">
+                <Button variant="hero" size="lg" onClick={onGenerate}>
+                  Download JSON
+                </Button>
+                <Button variant="outline" size="lg" onClick={onMatch}>
+                  Match Candidates
+                </Button>
+              </div>
+            </div>
 
             </CardContent>
           </Card>
