@@ -29,9 +29,11 @@ def embed_text(text):
 
 @app.route("/match", methods=["POST"])
 def match():
+    print("Starting match endpoint...")
     data = request.json
+    print(f"Received data: {data}")
     job_description = data.get("job_description", "")
-
+    print(f"Received job description: {job_description}")
     if not job_description:
         return jsonify({"error": "job_description is required"}), 400
 
@@ -45,7 +47,8 @@ def match():
         include_metadata=True
     )
 
-    return jsonify(results)
+    results_dict = results.to_dict()  # or results.json() or similar, depending on Pinecone SDK
+    return jsonify(results_dict)
 
 if __name__ == "__main__":
     app.run(debug=True)

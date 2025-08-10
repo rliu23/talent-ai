@@ -118,7 +118,7 @@ const Index = () => {
 
     try {
       const res = await fetch("http://localhost:5000/match", {
-        mode: 'no-cors',
+        // mode: 'no-cors',
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -127,11 +127,10 @@ const Index = () => {
           job_description: JSON.stringify(jsonData), // Send as string for embedding
         }),
       });
-
+      console.log("Sending match request with data:", jsonData);
       if (!res.ok) {
         throw new Error("Failed to fetch match results");
       }
-
       const data = await res.json();
       console.log("Match results:", data);
 
