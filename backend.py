@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from openai import OpenAI
 from dotenv import load_dotenv
 from pinecone import Pinecone
+from flask_cors import CORS
 import os
 
 load_dotenv()
@@ -17,6 +18,7 @@ pc = Pinecone(api_key=PINECONE_API_KEY)
 index = pc.Index(INDEX_NAME)
 
 app = Flask(__name__)
+CORS(app) 
 
 def embed_text(text):
     response = client.embeddings.create(
